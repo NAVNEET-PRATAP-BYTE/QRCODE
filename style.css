@@ -1,0 +1,215 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    background: #4b6cb7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #182848, #4b6cb7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+h1 {
+    color: white;
+    margin-bottom: 25px;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: clamp(20px, 5vw, 35px);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 90%;
+    width: min(400px, 100%);
+    animation: float 3s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at top right, 
+                    rgba(255,255,255,0.3), 
+                    transparent 70%);
+    pointer-events: none;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+input, select, button {
+    margin: 5px auto;
+    padding: 12px;
+    font-size: clamp(14px, 3vw, 16px);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2);
+    color: #333;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    width: 90%;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+button {
+    background-color: rgba(52, 152, 219, 0.8);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+button:hover {
+    background-color: rgba(41, 128, 185, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.size-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.size-option {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.size-option:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.size-option.active {
+    background: rgba(52, 152, 219, 0.6);
+    border-color: rgba(255, 255, 255, 0.5);
+    color: white;
+    font-weight: 500;
+}
+
+#qrcode {
+    margin-top: 20px;
+    padding: 15px;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 10px;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#qrcode img {
+    border: 5px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    height: auto;
+}
+
+#download-btn {
+    display: none;
+    margin-top: 15px;
+    background-color: rgba(21, 210, 100, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+#download-btn:hover {
+    background-color: rgba(39, 174, 96, 0.9);
+}
+
+@keyframes downloadAnimation {
+    0% {
+        width: 0%;
+        opacity: 0.8;
+    }
+    100% {
+        width: 100%;
+        opacity: 0;
+    }
+}
+
+.download-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.4);
+    transform-origin: left;
+    pointer-events: none;
+    animation: downloadAnimation 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px 15px;
+    }
+    input, select, button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
